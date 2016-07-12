@@ -10,7 +10,7 @@ You should be able to see the operations looking at the logs of `infinispan-clie
 
 ### Building
 
-Navigate to the $IPAAS_QUICKSTART/quickstart/infinispan/infinispan-client/ folder and the example can be built with
+Navigate to the project folder and the example can be built with
 
     mvn clean install
 
