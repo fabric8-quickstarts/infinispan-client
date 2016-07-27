@@ -2,7 +2,7 @@
 
 This quickstart run in a Java standalone container, using Spring with Apache Camel (Infinispan component)
 
-This example uses a timer to trigger a message every 5th secondi, generating a random number and put this value in an Infinispan cache and then get this value.
+This example uses a timer to trigger a message every 5 seconds, generating a random number and put this value in an Infinispan cache and then get this value.
 
 This example is related to `infinispan-server` quickstart which must be up and running.
 
