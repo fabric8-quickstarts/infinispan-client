@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-     Copyright 2005-2015 Red Hat, Inc.
+     Copyright 2005-2016 Red Hat, Inc.
 
      Red Hat licenses this file to you under the Apache License, version
      2.0 (the "License"); you may not use this file except in compliance
@@ -28,7 +28,9 @@
   <bean id="checkValueRoute" class="io.fabric8.example.camel.infinispan.routes.CheckValueRoute"/>
 
   <camelContext xmlns="http://camel.apache.org/schema/spring">
-    <routeBuilder ref="checkValueRoute" /> 
+
+    <routeBuilder ref="checkValueRoute" />
+
     <route id="infinispan-route">
       <from uri="timer:foo?period=5000"/>
       <to uri="direct:check" />
