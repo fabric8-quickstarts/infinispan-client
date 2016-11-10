@@ -132,6 +132,8 @@
             <config>
               <java-exec>
                 <mainClass>org.apache.camel.spring.Main</mainClass>
+                <!-- dont expose a http port as we have no service to export -->
+                <webPort>0</webPort>
               </java-exec>
             </config>
           </generator>
