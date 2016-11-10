@@ -16,7 +16,6 @@
      permissions and limitations under the License.
 
 -->
-<!-- Configures the Camel Context-->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -25,6 +24,7 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
 
+  <!-- Java route -->
   <bean id="checkValueRoute" class="io.fabric8.example.camel.infinispan.routes.CheckValueRoute"/>
 
   <camelContext xmlns="http://camel.apache.org/schema/spring">
@@ -32,8 +32,12 @@
     <routeBuilder ref="checkValueRoute" />
 
     <route id="infinispan-route">
+
+      <!-- trigger from timer and call the Java DSL route -->
       <from uri="timer:foo?period=5000"/>
       <to uri="direct:check" />
+
+      <!-- put to infinispan server -->
       <setHeader headerName="CamelInfinispanKey">
         <simple>${body}</simple>      
       </setHeader>
@@ -43,16 +47,21 @@
       <setHeader headerName="CamelInfinispanOperation">
         <constant>CamelInfinispanOperationPut</constant>        
       </setHeader>
+      <!-- call the infinispan-server kubernetes service -->
       <to uri="infinispan://{{service:infinispan-server}}" />
       <log message="Put (${header.CamelInfinispanKey},${header.CamelInfinispanValue})"/>
+
+      <!-- get back from infinispan server -->
       <setHeader headerName="CamelInfinispanKey">
         <simple>${body}</simple>       
       </setHeader>
       <setHeader headerName="CamelInfinispanOperation">
         <constant>CamelInfinispanOperationGet</constant>        
       </setHeader>
+      <!-- call the infinispan-server kubernetes service -->
       <to uri="infinispan://{{service:infinispan-server}}" />
       <log message="Get ${header.CamelInfinispanKey} with result ${header.CamelInfinispanOperationResult}"/>
+
     </route>
 
   </camelContext>

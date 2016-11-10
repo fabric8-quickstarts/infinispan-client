@@ -16,12 +16,7 @@
 
     <!-- dependency versions -->
     <camel.version>2.18.0</camel.version>
-    <commons-lang3.version>3.4</commons-lang3.version>
-
-    <!-- dependency versions -->
-    <camel.version>2.18.0</camel.version>
     <fabric8.version>2.2.176</fabric8.version>
-    <fabric8-ipaas.version>2.2.162</fabric8-ipaas.version>
     <spring-boot.version>1.4.1.RELEASE</spring-boot.version>
 
     <!-- maven plugin versions -->
@@ -63,7 +58,6 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-spring</artifactId>
     </dependency>
-
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-infinispan</artifactId>
@@ -73,7 +67,7 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>${commons-lang3.version}</version>
+      <version>3.4</version>
     </dependency>
 
     <!-- logging -->
